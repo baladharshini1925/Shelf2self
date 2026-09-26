@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Item Details - Shelf2Self</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="product-card">
+
+        <h1 id="itemtitle"></h1>
+
+        <p class="price" id="itemPrice"></p>
+
+        <p class="condition" id="itemCondition"></p>
+
+        <p id="itemDescription"></p>
+
+    </div>
+
+    <a href="browse.html">← Back to Browse Items</a>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const index = params.get("index");
+
+        const items = JSON.parse(localStorage.getItem("items")) || [];
+        const item = items[index];
+
+        if (item) {
+            document.getElementById("itemtitle").textContent = item.name;
+            document.getElementById("itemPrice").textContent = "₹" + item.price;
+            document.getElementById("itemCondition").textContent = item.condition;
+            document.getElementById("itemDescription").textContent = item.description;
+        }
+    </script>
+
+</body>
+</html>

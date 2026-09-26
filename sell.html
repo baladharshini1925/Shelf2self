@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sell an Item - Shelf2Self</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <a href="index.html">← Home</a>
+    <br>
+       <a href="browse.html">Browse Items</a>
+    </br>
+    <h1>Sell an Item</h1>
+<div class="sell-form">
+    <form onsubmit="additem();return false;" >
+
+        <label>Item Name</label><br>
+        <input type="text" placeholder="Enter item name" required><br><br>
+
+        <label>Price</label><br>
+        <input type="number" placeholder="Enter price" required><br><br>
+
+        <label>Condition</label><br>
+        <select>
+            <option>Used</option>
+            <option>Unused</option>
+        </select><br><br>
+
+        <label>Description</label><br>
+        <textarea placeholder="Describe your item" required></textarea><br><br>
+
+        <button type="submit">List Item</button>
+
+    </form>
+</div>
+    <script>
+function additem() {
+    const itemName = document.querySelector('input[type="text"]').value;
+    const price = document.querySelector('input[type="number"]').value;
+    const condition = document.querySelector('select').value;
+    const description = document.querySelector('textarea').value;
+
+    let items = JSON.parse(localStorage.getItem("items")) || [];
+
+    const newItem = {
+        name: itemName,
+        price: price,
+        condition: condition,
+        description: description
+    };
+
+    items.push(newItem);
+
+    localStorage.setItem("items", JSON.stringify(items));
+
+    alert("Your item has been listed successfully!");
+
+    document.querySelector("form").reset();
+}
+    </script>
+</body>
+</html>

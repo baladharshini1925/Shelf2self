@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Browse Items - Shelf2Self</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Shelf2Self</h1>
+    <input type="text" id="searchBox" placeholder="Search for an item...">
+    <h2>Browse Items</h2>
+    <p>find items listed by students.</p>
+    <div class="products">     
+    <div class="product-card">
+        <img src="https://via.placeholder.com/150" alt="Engineering Mathematics Textbook">
+        <h3>Engineering Mathematics - Textbook</h3>
+        <p class="price">150</p>
+        <p class="condition used">Used</p>
+        <a href="maths.html">
+            <button>View Item</button></a>
+    </div>
+    <br>
+    <div class="product-card">
+        <img src="https://via.placeholder.com/150" alt="Scientific Calculator">
+    
+        <h3>Scientific Calculator</h3>
+        <p class="price">350</p>
+        <p class="condition used">Unused</p>
+        <a href="calculator.html">
+            <button>View Item</button></a>
+    </div>
+    <br>
+    <div class="product-card">
+        <img src="images/notebook.jpg" alt="Notebook">
+    
+        <h3>Note book</h3>
+        <p class="price">₹50</p>
+        <p class="condition used">Unused</p>
+    
+        <a href="notebook.html">
+            <button>View Item</button>
+        </a>
+    </div>
+    </div>
+    <a href="index.html">← Back to Home</a>
+    <script>
+        document.getElementById("searchBox").addEventListener("keyup", function() {
+        
+            let searchText = this.value.toLowerCase();
+        
+            let products = document.querySelectorAll(".product-card");
+        
+            products.forEach(function(product) {
+        
+                let productName = product.querySelector("h3").textContent.toLowerCase();
+        
+                if (productName.includes(searchText)) {
+                    product.style.display = "block";
+                } else {
+                    product.style.display = "none";
+                }
+        
+            });
+        
+        });
+        const items = JSON.parse(localStorage.getItem("items")) || [];
+const products = document.querySelector(".products");
+
+items.forEach(function(item, index) {
+    products.innerHTML += `
+        <div class="product-card">
+            <h3>${item.name}</h3>
+            <p class="price">₹${item.price}</p>
+            <p class="condition">${item.condition}</p>
+            <a href="item.html?index=${index}">
+                <button>View Item</button>
+            </a>
+        </div>
+     `;
+        });
+    </script>
+</body>
+</html>
